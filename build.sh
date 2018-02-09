@@ -43,6 +43,8 @@ RUN cd /home/DeepSpeech &&
     cmake .. &&
     make -j 4
 
+_EOF_
+
 ## #####################################################################
 ## Build the Docker image, tag and push to https://hub.docker.com/
 ## #####################################################################
