@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOCKER_IMAGE_NAME="cutecare/deepspeech"
-IMAGE_VERSION="0.3"
+IMAGE_VERSION="0.4"
 
 log() {
    now=$(date +"%Y%m%d-%H%M%S")
