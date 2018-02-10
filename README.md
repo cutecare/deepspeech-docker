@@ -16,7 +16,7 @@ docker run -it -v /home/deepspeech:/work cutecare/deepspeech:latest bash
 
 ```
 cd /home/DeepSpeech/kenlm/build
-wget -O ru_wiki_text.tar.lzma "https://drive.google.com/uc?id=1ATAOkXApP5UUow6YbJlkoFoTACIk7ooV&export=download"
+wget -O ru_wiki_text.tar.lzma "http://projectscloud.ru/tags/ru_wiki_text.tar.lzma"
 tar xfv ru_wiki_text.tar.lzma
 bin/lmplz -o 4 -S 3G <ru/full.txt | bin/build_binary /dev/stdin /work/lm.binary 
 ```
