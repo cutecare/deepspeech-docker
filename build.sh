@@ -29,13 +29,15 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+VOLUME /work
+
 # Install DeepSpeech and deps
-RUN cd /home && git clone -b cutecare https://github.com/cutecare/DeepSpeech.git && \
+RUN cd /work && git clone -b cutecare https://github.com/cutecare/DeepSpeech.git && \
     pip install -r DeepSpeech/requirements.txt && \
     python DeepSpeech/util/taskcluster.py --target DeepSpeech/native_client
 
 # Install KenLM to produce language model
-RUN cd /home/DeepSpeech && \
+RUN cd /work/DeepSpeech && \
     wget http://kheafield.com/code/kenlm.tar.gz && \
     tar xfvz kenlm.tar.gz && \
     mkdir -p kenlm/build && \
