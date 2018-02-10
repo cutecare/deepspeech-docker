@@ -6,7 +6,7 @@
 ```
 sudo -s
 curl -sSL https://get.docker.com | sh
-docker run -it -v /home:/home cutecare/deepspeech:latest bash
+docker run -it -v /home/deepspeech:/work cutecare/deepspeech:latest bash
 ```
 
 ## Создание модели
@@ -18,14 +18,14 @@ docker run -it -v /home:/home cutecare/deepspeech:latest bash
 cd /home/DeepSpeech/kenlm/build
 wget -O ru_wiki_text.tar.lzma "https://downloader.disk.yandex.ru/disk/59cf212c14568566fb6c9a2daf774a127f6f2155b34966b0a88e5a2252eae6a6/5a7eb6b1/xzO90AcS2RgzBLTfJiTsV9neJ0q43FWsJSXsgud43YCOFRMCRmmtDYBJcn_E0I_J7RSe9OXaONmMF06O9g37Vw%3D%3D?uid=0&filename=ru_wiki_text.tar.lzma&disposition=attachment&hash=llBBd/Rpfnkib2pBeYHtaaEMNenYWAOlKMop2ZNevjM%3D%3A&limit=0&content_type=application%2Foctet-stream&fsize=550737536&hid=20432b814a39232d37e389d6c057da46&media_type=compressed&tknv=v2"
 tar xfv ru_wiki_text.tar.lzma
-bin/lmplz -o 4 -S 3G <ru/full.txt | bin/build_binary /dev/stdin /home/DeepSpeech/data/lm/lm.binary 
+bin/lmplz -o 4 -S 3G <ru/full.txt | bin/build_binary /dev/stdin /work/lm.binary 
 ```
 
 Создаем trie-структуру, необходимую для дальнейшего обучения сети. В качестве параметров используется русский алфавит, языковая модель, полученная на предыдущем шаге и словарь, состоящий из фраз, релевантных контексту.
 
 ```
 cd /home/DeepSpeech
-native_client/generate_trie data/alphabet.txt data/lm/lm.binary data/lm/vocab.txt data/lm/trie
+native_client/generate_trie data/alphabet.txt /work/lm.binary data/lm/vocab.txt /work/trie
 ```
 
 Для обучения сети нам нужны учебные данные - звуковые файлы и их транскрибация. Сообществом VoxForge подготовлен огромный материал, но общего контекста. Если позволяют вычислительные мощности, то лучше конечно воспользоваться этими данными.
@@ -34,7 +34,7 @@ native_client/generate_trie data/alphabet.txt data/lm/lm.binary data/lm/vocab.tx
 cd /home/DeepSpeech
 chmod 775 *
 ./bin/import_voxforge.py /home/DeepSpeech/data
-./DeepSpeech.py --train_files data/voxforge-train.csv --dev_files data/voxforge-dev.csv --test_files data/cutecare/voxforge.csv --checkpoint_dir data/checkpoint --export_dir data/export
+./DeepSpeech.py --train_files data/voxforge-train.csv --dev_files data/voxforge-dev.csv --test_files data/cutecare/voxforge.csv --checkpoint_dir /work/checkpoint --export_dir /work/export --lm_binary_path /work/lm.binary --lm_trie_path /work/trie
 ```
 
 Чтобы опробовать все на тестовых данных, используйте наш учебный материал. Работать с ним можно на виртуальной машине. Обучение сети займет всего пару суток.
@@ -42,7 +42,7 @@ chmod 775 *
 ```
 cd /home/DeepSpeech
 chmod 775 *
-./DeepSpeech.py --train_files data/cutecare/cutecare-train.csv --dev_files data/cutecare/cutecare-dev.csv --test_files data/cutecare/cutecare-test.csv --checkpoint_dir data/checkpoint --export_dir data/export
+./DeepSpeech.py --train_files data/cutecare/cutecare-train.csv --dev_files data/cutecare/cutecare-dev.csv --test_files data/cutecare/cutecare-test.csv --checkpoint_dir /work/checkpoint --export_dir /work/export --lm_binary_path /work/lm.binary --lm_trie_path /work/trie
 ```
 
 ### Ссылки
