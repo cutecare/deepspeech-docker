@@ -19,19 +19,18 @@ MAINTAINER Evgeny Savitsky <evgeny.savitsky@gmail.com>
 # Base layer
 ENV ARCH=amd64
 ENV CROSS_COMPILE=/usr/bin/
-VOLUME /home
 
 # Install required packages
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
-      wget build-essential python python-dev python-pip \
+      wget build-essential python python-dev python-pip python-setuptools \
       lzma git cmake libboost-all-dev libbz2-dev liblzma-dev libeigen3-dev && \
+    pip install wheel && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install DeepSpeech and deps
-RUN apt-get update && apt-get -y install python-setuptools && pip install wheel && \
-    cd /home && git clone -b cutecare https://github.com/cutecare/DeepSpeech.git && \
+RUN cd /home && git clone -b cutecare https://github.com/cutecare/DeepSpeech.git && \
     pip install -r DeepSpeech/requirements.txt && \
     python DeepSpeech/util/taskcluster.py --target DeepSpeech/native_client
 
