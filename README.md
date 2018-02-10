@@ -47,6 +47,9 @@ chmod 775 *
 
 ### Ссылки
 https://research-journal.org/technical/sravnitelnyj-analiz-sistem-raspoznavaniya-rechi-s-otkrytym-kodom/
+
 http://kheafield.com/code/kenlm/
+
 https://sites.google.com/site/rmyeid/projects/polyglot
+
 https://github.com/Kyubyong/wordvectors
