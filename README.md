@@ -16,7 +16,7 @@ docker run -it -v /home/deepspeech:/work cutecare/deepspeech:latest bash
 
 ```
 cd /home/DeepSpeech/kenlm/build
-wget -O ru_wiki_text.tar.lzma "https://downloader.disk.yandex.ru/disk/59cf212c14568566fb6c9a2daf774a127f6f2155b34966b0a88e5a2252eae6a6/5a7eb6b1/xzO90AcS2RgzBLTfJiTsV9neJ0q43FWsJSXsgud43YCOFRMCRmmtDYBJcn_E0I_J7RSe9OXaONmMF06O9g37Vw%3D%3D?uid=0&filename=ru_wiki_text.tar.lzma&disposition=attachment&hash=llBBd/Rpfnkib2pBeYHtaaEMNenYWAOlKMop2ZNevjM%3D%3A&limit=0&content_type=application%2Foctet-stream&fsize=550737536&hid=20432b814a39232d37e389d6c057da46&media_type=compressed&tknv=v2"
+wget -O ru_wiki_text.tar.lzma "https://drive.google.com/uc?id=1ATAOkXApP5UUow6YbJlkoFoTACIk7ooV&export=download"
 tar xfv ru_wiki_text.tar.lzma
 bin/lmplz -o 4 -S 3G <ru/full.txt | bin/build_binary /dev/stdin /work/lm.binary 
 ```
@@ -25,6 +25,7 @@ bin/lmplz -o 4 -S 3G <ru/full.txt | bin/build_binary /dev/stdin /work/lm.binary
 
 ```
 cd /home/DeepSpeech
+git pull
 native_client/generate_trie data/alphabet.txt /work/lm.binary data/lm/vocab.txt /work/trie
 ```
 
