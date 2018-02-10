@@ -47,6 +47,8 @@ chmod 775 *
 ```
 
 ### Ссылки
+https://github.com/cutecare/DeepSpeech
+
 https://research-journal.org/technical/sravnitelnyj-analiz-sistem-raspoznavaniya-rechi-s-otkrytym-kodom/
 
 http://kheafield.com/code/kenlm/
