@@ -19,6 +19,7 @@ MAINTAINER Evgeny Savitsky <evgeny.savitsky@gmail.com>
 # Base layer
 ENV ARCH=amd64
 ENV CROSS_COMPILE=/usr/bin/
+VOLUME /home
 
 # Install required packages
 RUN apt-get update && \
