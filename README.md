@@ -42,8 +42,8 @@ chmod 775 *
 
 ```
 cd /home/DeepSpeech
-chmod 775 *
-./DeepSpeech.py --train_files data/cutecare/cutecare-train.csv --dev_files data/cutecare/cutecare-dev.csv --test_files data/cutecare/cutecare-test.csv --checkpoint_dir /work/checkpoint --export_dir /work/export --lm_binary_path /work/lm.binary --lm_trie_path /work/trie
+chmod 775 bin/*
+./bin/run-cutecare.sh
 ```
 
 ### Ссылки
