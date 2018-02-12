@@ -6,7 +6,7 @@
 ```
 sudo -s
 curl -sSL https://get.docker.com | sh
-docker run -it -v /home/deepspeech:/work cutecare/deepspeech:latest bash
+docker run -it --name deepspeech -v /home/deepspeech:/work cutecare/deepspeech:latest bash
 ```
 
 ## Создание модели
