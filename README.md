@@ -43,7 +43,7 @@ chmod 775 *
 ```
 cd /home/DeepSpeech
 chmod 775 bin/*
-./bin/run-cutecare.sh
+nohup ./bin/run-cutecare.sh &
 ```
 
 ### Ссылки
